@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Înregistrare</title>
+  <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      width: 350px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    small {
+      font-size: 0.8em;
+      color: gray;
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Crează cont nou</h2>
+  <form id="registerForm">
+    <input type="text" placeholder="Nume utilizator" required minlength="3" />
+    <input type="email" placeholder="Email" required />
+    <input type="tel" id="phone" placeholder="+407..." required pattern="\+[0-9]{9,15}" title="Format: +40712345678" />
+    <input type="password" placeholder="Parolă" required minlength="6" />
+    <button type="submit">Înregistrare</button>
+  </form>
+  <small>Exemplu telefon: +40712345678</small>
+  <p style="text-align:center; margin-top:15px;">
+    Ai deja cont? <a href="../login/login.html">Autentifică-te aici</a>
+  </p>
+</div>
+
+<script>
+  document.getElementById("registerForm").addEventListener("submit", function(e) {
+    const phoneInput = document.getElementById('phone').value;
+
+    // Validare suplimentară
+    const phoneRegex = /^\+[0-9]{9,15}$/;
+    if (!phoneRegex.test(phoneInput)) {
+      e.preventDefault();
+      alert("Numărul de telefon trebuie să înceapă cu '+' și să conțină între 9 și 15 cifre (ex: +40712345678).");
+      return false;
+    }
+
+    e.preventDefault();
+    alert("Cont creat cu succes!");
+  });
+</script>
+
+</body>
+</html>
